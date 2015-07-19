@@ -1,17 +1,23 @@
 package com.sipleprogram.proteintracker;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 public class TrackingServiceTest {
 
 	private TrackingService service;
+	private int Integer;
 
 	@BeforeClass
 	public static void Before() {
@@ -47,14 +53,17 @@ public class TrackingServiceTest {
 	@Category(GoodTestCategory.class)
 	public void whenAddingProteinTotalIncreasesByThatAmount() {
 		service.addProtein(10);
-		assertEquals("Proteing amount was not correct", 10, service.getTotal());
-
+		// assertEquals("Proteing amount was not correct", 10, service.getTotal());
+		// assertThat(service.getTotal(),is(10));
+		assertThat(service.getTotal(), allOf(is(10), instanceOf(Integer.class)));
+		// all of this conditions: it is 10 and it instaceof Integer.class.
 	}
 
 	@Test
 	public void whenARemovingProteinTotalRemainsZero() {
 		service.removeProtein(5);
-		assertEquals(0, service.getTotal());
+		// assertEquals(0, service.getTotal());
+		assertThat(service.getTotal(),is(0));
 
 	}
 
@@ -64,6 +73,7 @@ public class TrackingServiceTest {
 	}
 	
 	@Test(timeout = 200)
+	@Ignore
 	public void BadTest() {
 		for (int i = 0; i < 10000000; i++) {
 			service.addProtein(1);
