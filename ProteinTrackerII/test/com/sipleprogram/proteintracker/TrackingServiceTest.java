@@ -1,6 +1,7 @@
 package com.sipleprogram.proteintracker;
 
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -11,8 +12,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.ExpectedException;
 
 public class TrackingServiceTest {
 
@@ -21,17 +24,17 @@ public class TrackingServiceTest {
 
 	@BeforeClass
 	public static void Before() {
-		System.out.println("Before Class");
+		//System.out.println("Before Class");
 	}
 
 	@AfterClass
 	public static void After() {
-		System.out.println("After Class");
+		//System.out.println("After Class");
 	}
 
 	@Before
 	public void setUp() {
-		System.out.println("Before");
+		// System.out.println("Before");
 		service = new TrackingService();
 	}
 
@@ -40,7 +43,7 @@ public class TrackingServiceTest {
 		// @After also know as TeaDown - It is useful to clear and rmove
 		// fixtures such as databases
 		// or any files left behind or setup data left behind
-		System.out.println("After");
+		//System.out.println("After");
 	}
 
 	@Test
@@ -64,11 +67,17 @@ public class TrackingServiceTest {
 		service.removeProtein(5);
 		// assertEquals(0, service.getTotal());
 		assertThat(service.getTotal(),is(0));
-
 	}
-
-	@Test(expected = InvalidGoalException.class)
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+	
+	//@Test(expected = InvalidGoalException.class)
+	@Test
 	public void WhenGoalIsLessThanZeroExceptionIsThrown() throws InvalidGoalException {
+		thrown.expect(InvalidGoalException.class);
+//		thrown.expectMessage("Goal was less than zero!");
+		thrown.expectMessage(containsString("Goal"));
 		service.setGoal(-5);
 	}
 	
