@@ -22,7 +22,7 @@ public class TrackingServiceTest {
 	public static void After() {
 		System.out.println("After Class");
 	}
-	
+
 	@Before
 	public void setUp() {
 		System.out.println("Before");
@@ -44,7 +44,6 @@ public class TrackingServiceTest {
 	}
 
 	@Test
-	@Ignore 
 	public void whenAddingProteinTotalIncreasesByThatAmount() {
 		service.addProtein(10);
 		assertEquals("Proteing amount was not correct", 10, service.getTotal());
@@ -56,6 +55,18 @@ public class TrackingServiceTest {
 		service.removeProtein(5);
 		assertEquals(0, service.getTotal());
 
+	}
+
+	@Test(expected = InvalidGoalException.class)
+	public void WhenGoalIsLessThanZeroExceptionIsThrown() throws InvalidGoalException {
+		service.setGoal(-5);
+	}
+	
+	@Test(timeout = 200)
+	public void BadTest() {
+		for (int i = 0; i < 10000000; i++) {
+			service.addProtein(1);
+		}
 	}
 
 }
