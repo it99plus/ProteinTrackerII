@@ -22,7 +22,7 @@ public class TrackingService {
 		total -= amount;
 		if (total < 0) 
 			total = 0;
-		history.add(new HistoryItem(historyId++, amount, "substract", total));
+		history.add(new HistoryItem(historyId , amount, "substract", total));
 	}
 	
 	public int getTotal() {
