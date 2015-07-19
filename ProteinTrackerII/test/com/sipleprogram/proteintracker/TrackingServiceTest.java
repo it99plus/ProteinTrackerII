@@ -11,7 +11,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -81,6 +80,7 @@ public class TrackingServiceTest {
 		thrown.expectMessage(containsString("Goal"));
 		service.setGoal(-5);
 	}
+	
 	
 	@Rule
 	public Timeout timeout = new Timeout(20);  // applies to the entire test test class
