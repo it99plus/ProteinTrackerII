@@ -16,6 +16,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
+import org.junit.rules.Timeout;
 
 public class TrackingServiceTest {
 
@@ -81,8 +82,12 @@ public class TrackingServiceTest {
 		service.setGoal(-5);
 	}
 	
-	@Test(timeout = 200)
-	@Ignore
+	@Rule
+	public Timeout timeout = new Timeout(20);  // applies to the entire test test class
+	
+	// @Test(timeout = 200)
+//	@Ignore
+	@Test
 	public void BadTest() {
 		for (int i = 0; i < 10000000; i++) {
 			service.addProtein(1);
