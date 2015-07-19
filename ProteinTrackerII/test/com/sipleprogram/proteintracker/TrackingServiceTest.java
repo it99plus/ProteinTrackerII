@@ -44,7 +44,7 @@ public class TrackingServiceTest {
 	}
 
 	@Test
-	@Ignore
+	@Ignore 
 	public void whenAddingProteinTotalIncreasesByThatAmount() {
 		service.addProtein(10);
 		assertEquals("Proteing amount was not correct", 10, service.getTotal());
