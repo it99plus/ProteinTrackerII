@@ -49,7 +49,7 @@ public class TrackingServiceTest {
 		service.addProtein(10);
 		assertEquals("Proteing amount was not correct", 10, service.getTotal());
 
-	}
+	}	
 
 	@Test
 	public void whenARemovingProteinTotalRemainsZero() {
