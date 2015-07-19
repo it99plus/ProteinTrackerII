@@ -7,9 +7,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({ 
 	HelloJUnitTest.class, 
 	TrackingServiceTest.class })
-
-
-
 public class ProteinTrackerSuite {
 
 }

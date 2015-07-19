@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class TrackingServiceTest {
 
@@ -38,12 +38,13 @@ public class TrackingServiceTest {
 	}
 
 	@Test
+	@Category(BadTestCategory.class)
 	public void NewTrackingServiceTotalSizeIsZero() {
-		assertEquals("Tracking service total was not zero", 0,
-				service.getTotal());
+		assertEquals("Tracking service total was not zero", 0,service.getTotal());
 	}
 
 	@Test
+	@Category(GoodTestCategory.class)
 	public void whenAddingProteinTotalIncreasesByThatAmount() {
 		service.addProtein(10);
 		assertEquals("Proteing amount was not correct", 10, service.getTotal());
